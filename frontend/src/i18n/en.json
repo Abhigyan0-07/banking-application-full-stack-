@@ -1,0 +1,18 @@
+{
+  "signup": "Sign Up",
+  "signin": "Sign In",
+  "enterYourInformation": "Enter your information to create an account",
+  "enterYourCredentials": "Enter your credentials to access your account",
+  "dashboard": "Dashboard",
+  "sendMoney": "Send Money",
+  "paymentStatus": "Payment Status",
+  "usersList": "Users List",
+  "amountLabel": "Amount (in Rs)",
+  "enterAmount": "Enter amount",
+  "initiateTransfer": "Initiate Transfer",
+  "cancel": "Cancel & Go Back",
+  "secureTransfer": "Secure and instant transfer"
+  ,"yourBalance": "Your balance"
+  ,"searchUsers": "Search users..."
+  ,"noUsers": "No users found"
+}

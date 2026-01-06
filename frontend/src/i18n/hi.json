@@ -1,0 +1,18 @@
+{
+  "signup": "साइन अप",
+  "signin": "साइन इन",
+  "enterYourInformation": "खाता बनाने के लिए अपनी जानकारी दर्ज करें",
+  "enterYourCredentials": "अपने खाते तक पहुंचने के लिए अपनी जानकारी दर्ज करें",
+  "dashboard": "डैशबोर्ड",
+  "sendMoney": "पैसे भेजें",
+  "paymentStatus": "भुगतान स्थिति",
+  "usersList": "उपयोगकर्ताओं की सूची",
+  "amountLabel": "राशि (रु में)",
+  "enterAmount": "राशि दर्ज करें",
+  "initiateTransfer": "स्थानांतरण प्रारंभ करें",
+  "cancel": "रद्द करें और वापस जाएं",
+  "secureTransfer": "सुरक्षित और त्वरित स्थानांतरण"
+  ,"yourBalance": "आपका बैलेंस"
+  ,"searchUsers": "उपयोगकर्ता खोजें..."
+  ,"noUsers": "कोई उपयोगकर्ता नहीं मिला"
+}
