@@ -44,9 +44,37 @@ router.post("/transfer", authMiddleware, async (req, res) => {
   }
   // ----------------------------------
 
-  // ----- Simulated Failures logic -----
+  // ----- Malicious User Logic -----
   const recipientUser = await User.findById(to).session(session);
-  
+  const senderUser = user; // User fetched above
+
+  // 1. Block transfers TO Malicious Users
+  if (recipientUser && recipientUser.isMalicious) {
+    await session.abortTransaction();
+    return res.status(403).json({ message: "Transfer Failed: Recipient is partially banned due to suspicious activity." });
+  }
+
+  // 2. Detect Risky Activity (Person X / Person Y)
+  // We perform this update OUTSIDE the transaction session to persist even if transaction fails/rolls back
+  if (recipientUser) {
+    let riskType = null;
+    if (recipientUser.firstName === "Person X" || recipientUser.firstName === "PersonX") riskType = "X";
+    if (recipientUser.firstName === "Person Y" || recipientUser.firstName === "PersonY") riskType = "Y";
+
+    if (riskType) {
+        // Use a separate update operation to ensure this flag persists regardless of the transaction outcome
+        // We use $addToSet to avoid duplicates
+        await User.updateOne({ _id: req.userId }, { $addToSet: { riskyTransfers: riskType } });
+        
+        // Re-fetch to check if they are now malicious
+        const updatedSender = await User.findById(req.userId);
+        if (updatedSender.riskyTransfers.includes("X") && updatedSender.riskyTransfers.includes("Y")) {
+             await User.updateOne({ _id: req.userId }, { isMalicious: true });
+        }
+    }
+  }
+
+  // 3. Simulated Failures (Original Logic)
   if (recipientUser) {
     // Case 1: Transfer to "Person X" - Simulate Timeout/Waiting
     if (recipientUser.firstName === "Person X" || recipientUser.firstName === "PersonX") {

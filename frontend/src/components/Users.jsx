@@ -62,12 +62,25 @@ function User({ user }) {
         </div>
       </div>
       <div>
-        <Button
-          onClick={() => {
-            navigate("/send?id=" + user._id + "&name=" + user.firstName);
-          }}
-          label={"Send Money"}
-        />
+        {user.isMalicious ? (
+            <div className="flex items-center gap-2">
+                <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-medium border border-red-200">
+                    Malicious User
+                </span>
+                <Button
+                    onClick={() => {}}
+                    label={"Blocked"}
+                    disabled={true} // Add visual disabled style if button supports it
+                />
+            </div>
+        ) : (
+            <Button
+            onClick={() => {
+                navigate("/send?id=" + user._id + "&name=" + user.firstName);
+            }}
+            label={"Send Money"}
+            />
+        )}
       </div>
     </div>
   );
