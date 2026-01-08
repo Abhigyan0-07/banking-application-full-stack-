@@ -1,72 +1,82 @@
-# PayTM Clone
+# Horizon Bank
 
-Welcome to the PayTM Clone project! This project aims to replicate the basic functionality of PayTM, allowing users to perform transactions, view their account balance, and interact with other users.
+Horizon Bank is a comprehensive full-stack banking application that replicates core digital banking functionalities. It allows users to create accounts, manage funds, perform secure transfers with PIN verification, and search for other users.
 
 ## Features
 
-- User Authentication & Authorization using JWT
-- View Account Balance
-- Search and view other users
-- Send money to other users' accounts
+- **User Authentication**: Secure Signup and Signin using JWT and Bcrypt.
+- **Account Management**: View current balance and account details.
+- **Secure Transactions**: Transfer money to other users with PIN verification and ACID-compliant database transactions.
+- **User Search**: Search for other users by name to initiate transfers.
+- **Security**:
+    - Transaction PIN verification.
+    - Protection against malicious users.
+    - Risk detection system.
+- **Responsive UI**: Built with React and Tailwind CSS for a seamless experience.
 
-## Technology Stack
+## Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
+### Frontend
+- **React**: UI Library
+- **Tailwind CSS**: Utility-first CSS framework
+- **Vite**: Build tool
+- **Axios**: HTTP client
+- **React Router**: Navigation
+
+### Backend
+- **Node.js & Express**: Runtime and Web Framework
+- **MongoDB & Mongoose**: Database and ODM
+- **Zod**: Input validation
+- **JWT**: Authentication
+- **Bcrypt**: Password hashing
 
 ## Getting Started
 
-To get started with the PayTM Clone project, follow these steps:
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (Local or Atlas URL)
 
-1. **Clone the Repository**: Clone the repository from GitHub:
+### Installation
 
-   ```
+1. **Clone the repository**
+   ```bash
    git clone https://github.com/Abhigyan0-07/banking-application-full-stack-.git
+   cd banking-application-full-stack-
    ```
 
-2. **Set Environment Variables**: Navigate to the `frontend` and `backend` folders and add necessary environment variables. You may need to create a `.env` file and configure it with required variables:
-   In the backend/.env file:
-
-   ```
-   MONGO_URL = your-mongo-url
-   PORT = 3000
-   JWT_SECRET = your-jwt-secret
-   ```
-
-   In the frontend/.env file:
-
-   ```
-   VITE_SERVER_URL = your-server-url
+2. **Backend Setup**
+   ```bash
+   cd backend
+   npm install
+   # Create a .env file
+   # MONGO_URL=your_mongodb_url
+   # JWT_SECRET=your_jwt_secret
+   # PORT=3000
+   npm run dev
    ```
 
-3. **Install Dependencies**: Install dependencies in the `frontend` and `backend` folders using npm or yarn:
-
-   ```
+3. **Frontend Setup**
+   ```bash
    cd frontend
    npm install
-   cd ../backend
-   npm install
-   ```
-
-4. **Start the Backend Server**: In the `backend` folder, start the development server using npm:
-
-   ```
+   # Create a .env file if needed
+   # VITE_SERVER_URL=http://localhost:3000/api/v1
    npm run dev
    ```
 
-5. **Start the Frontend**: In the `frontend` folder, start the frontend application:
+## API Endpoints
 
-   ```
-   npm run dev
-   ```
+### User Routes (`/api/v1/user`)
+- `POST /signup`: Create a new user account.
+- `POST /signin`: Log in to an existing account.
+- `PUT /`: Update user information (password, name).
+- `GET /bulk?filter=...`: Search for users by name.
+- `GET /getUser`: Get current logged-in user details.
 
-## Database Transactions
+### Account Routes (`/api/v1/account`)
+- `GET /balance`: Get account balance.
+- `POST /transfer`: Transfer funds to another user (Requires PIN).
 
-The PayTM Clone project implements MongoDB Transactions to ensure data consistency and reliability. Transactions follow the ACID properties of databases, ensuring that transactions are either fully completed and committed or reverted back in case of issues, thus preventing inconsistencies in the database.
+## License
 
-## Contributions
-
-Contributions to the PayTM Clone project are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
-
-Thank you for using PayTM Clone! Happy Coding! 🚀
+This project is licensed under the ISC License.
