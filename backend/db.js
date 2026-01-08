@@ -30,6 +30,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isMalicious: {
+    type: Boolean,
+    default: false,
+  },
+  riskyTransfers: [{
+    type: String, // Stores "X" or "Y"
+  }],
 });
 
 const accountSchema = new mongoose.Schema({
